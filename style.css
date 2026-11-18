@@ -1,0 +1,957 @@
+/* Base Styles & Palette */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #FDF0ED;
+    color: #111111;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    animation: pageFadeIn 0.45s ease forwards;
+}
+
+body.page-exit {
+    animation: pageFadeOut 0.35s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pageFadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Header & Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #111111;
+    color: #ffffff;
+}
+
+.navbar .logo {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.navbar nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* Main Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 60px;
+}
+
+/* Hero Section Headline - Massive, Heavy, SNASK-Style Impact */
+.hero h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 5.5rem;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-top: 0;
+    margin-bottom: 28px;
+    max-width: 700px;
+}
+
+.hero .intro {
+    font-size: 1.35rem;
+    line-height: 1.6;
+    max-width: 620px;
+}
+
+/* Hero text block: centered within the full-width hero */
+.hero-text {
+    position: relative;
+    z-index: 10;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Work Section */
+.work-section {
+    margin-top: 80px;
+}
+
+.section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #111111; /* Thicker line for punchier hierarchy */
+    padding-bottom: 12px;
+}
+
+/* Work grid: full-width video banner on top, three equal cards below */
+.work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+}
+
+/* P1 — full-width video banner */
+.work-card:nth-child(1) {
+    grid-column: 1 / 4;
+    grid-row: 1;
+}
+
+/* P2, P3, P4 — three equal cards in row 2 */
+.work-card:nth-child(2) { grid-column: 1; grid-row: 2; }
+.work-card:nth-child(3) { grid-column: 2; grid-row: 2; }
+.work-card:nth-child(4) { grid-column: 3; grid-row: 2; }
+
+/* P1 video: thin cinematic banner */
+.work-card:nth-child(1) .image-wrapper {
+    aspect-ratio: 5 / 1;
+    flex: none;
+}
+
+/* P2 (Sofra) — taller to show more */
+.work-card:nth-child(2) .image-wrapper {
+    aspect-ratio: 4 / 3;
+    flex: none;
+}
+
+/* P3, P4 — 16:9 to match image proportions */
+.work-card:nth-child(3) .image-wrapper,
+.work-card:nth-child(4) .image-wrapper {
+    aspect-ratio: 16 / 9;
+    flex: none;
+}
+
+.work-card {
+    text-decoration: none;
+    color: #111111;
+    display: flex;
+    flex-direction: column;
+}
+
+.work-card:hover .image-wrapper img,
+.work-card:hover .image-wrapper video {
+    transform: scale(1.03);
+}
+
+.image-wrapper {
+    flex: 1;
+    overflow: hidden;
+    background-color: #e0d5d2;
+    min-height: 0;
+}
+
+.image-wrapper img,
+.image-wrapper video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* Card label row: number left, title right */
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0 4px 0;
+    gap: 12px;
+}
+
+.card-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #999999;
+    flex-shrink: 0;
+}
+
+.card-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #111111;
+    text-align: right;
+}
+/* --------------------------------------------------
+   COLOR THEME VARIATIONS
+-------------------------------------------------- */
+
+/* Default / Peach (Your home page look) */
+body, body[data-theme="peach"] {
+    background-color: #FDF0ED;
+    color: #111111;
+}
+
+/* Theme 1: Dark Mode / Charcoal (Cancer Care style) */
+body[data-theme="dark"] {
+    background-color: #161616;
+    color: #F5F5F5;
+}
+body[data-theme="dark"] .navbar {
+    background-color: transparent;
+    border-bottom: 1px solid #333333;
+}
+body[data-theme="dark"] .navbar nav a {
+    color: #FFFFFF;
+}
+body[data-theme="dark"] .tags {
+    color: #A0A0A0;
+}
+
+/* Theme 2: Soft Blue (KommuneKredit style) */
+body[data-theme="blue"] {
+    background-color: #DDE8FA;
+    color: #111111;
+}
+
+/* Theme 3: Soft Lavender / Purple (Zalando style) */
+body[data-theme="purple"] {
+    background-color: #D3C2FE;
+    color: #111111;
+}
+
+/* Theme 4: Pastel Lime / Green (Louise From Hero style) */
+body[data-theme="lime"] {
+    background-color: #EEFCA8;
+    color: #111111;
+}
+/* ==================================================
+   CASE STUDY LAYOUT & COMPONENT STYLES
+================================================== */
+
+.case-study {
+    width: 100%;
+    max-width: 1400px; /* Expands much wider to fill the screen */
+    margin: 0 auto;
+    padding: 60px 6% 100px 6%; /* Percentage padding gives edge-to-edge look with clean breathing room */
+}
+
+.case-study .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    margin-bottom: 16px;
+}
+
+.case-study h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.case-study .hero-intro {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.case-study .hero-question {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    padding: 20px;
+    border-left: 3px solid currentColor;
+    margin-top: 30px;
+}
+
+/* Stats Section (Adapts border & text to current theme color) */
+.case-study .stats {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px;
+    padding: 40px 0;
+    border-top: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    margin: 60px 0;
+}
+
+.case-study .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.case-study .stat-label {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    opacity: 0.85;
+}
+
+/* Section Dividers */
+.case-study .section, 
+.case-study .process-section {
+    margin-bottom: 80px;
+    padding-top: 40px;
+    border-top: none; /* Changed from 1px solid currentColor */
+}
+
+.case-study .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.case-study .section h2, 
+.case-study .process-section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.case-study .section-intro {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.case-study .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.case-study .content-item-number {
+    font-weight: 700;
+    opacity: 0.5;
+    margin-bottom: 8px;
+}
+
+.case-study .content-item h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.case-study .process-map-wrapper {
+    margin-top: 50px;
+    width: 100%;
+    overflow: visible;
+}
+
+.case-study .process-line {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-dasharray: 4 4;
+}
+
+.case-study .process-dot {
+    fill: currentColor;
+}
+
+/* Automatically handles text inside SVG dots based on light vs dark theme */
+.case-study .process-number {
+    fill: #FFFFFF;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-anchor: middle;
+}
+
+body[data-theme="dark"] .case-study .process-number {
+    fill: #161616;
+}
+
+.case-study .process-title,
+.case-study .process-label {
+    fill: currentColor;
+    font-size: 13px;
+    text-anchor: middle;
+}
+
+/* Workflow Rows */
+.case-study .workflow-row {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid currentColor;
+}
+
+.case-study .workflow-number {
+    width: 50px;
+    font-weight: 700;
+    opacity: 0.5;
+}
+
+/* Bottom Details Footer Block */
+.case-study .details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-top: 40px;
+    border-top: 2px solid currentColor;
+    margin-top: 80px;
+}
+
+.case-study .detail-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    margin-bottom: 8px;
+}
+
+/* Desktop Responsive Formatting */
+@media (max-width: 700px) {
+    .case-study .stats,
+    .case-study .content-grid,
+    .case-study .details {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}
+/* 1. Prevent the viewport from scrolling horizontally */
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+/* FORCE ENTIRE PAGE TO CENTER */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+}
+
+/* Ensure case-study container is centered with equal side margins */
+.case-study {
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 60px !important;
+    padding-right: 60px !important;
+    box-sizing: border-box !important;
+}
+
+/* Center all child sections and process maps inside case-study */
+.case-study section,
+.case-study .section,
+.case-study .process-section,
+.process-map-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+/* Cover Image Styling */
+.cover-image-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+.cover-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px; /* Gives nice soft corners */
+    object-fit: cover;
+}
+/* Scope floating styles strictly to landing page hero section */
+.hero {
+    position: relative !important;
+    width: 100%;
+    min-height: 85vh;
+    padding: 80px 60px;
+    box-sizing: border-box;
+    /* Full-width: no max-width, so floating images span the whole viewport */
+}
+
+.hero .float-item {
+    position: absolute !important;
+    z-index: 5;
+    pointer-events: none;
+    transition: transform 0.15s ease-out;
+    animation: floatAnimation 4s ease-in-out infinite alternate;
+}
+
+.hero .float-card {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+}
+/* Hero text stays centered and layered above floating elements */
+.hero h1,
+.hero .intro {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+/* Work grid: 2 columns with generous spacing */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px 40px;
+}
+.float-item {
+    position: absolute !important;
+    z-index: 5;
+    pointer-events: none;
+    /* Smooth out cursor tracking */
+    transition: transform 0.1s ease-out; 
+    /* Gentle ambient float without breaking JS transform */
+    animation: gentleFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes gentleFloat {
+    0% { margin-top: 0px; }
+    100% { margin-top: -12px; }
+}
+/* Force SAP case study headers and text to stay left-aligned */
+.sap-case-study h1,
+.sap-case-study h2,
+.sap-case-study p,
+.sap-case-study .section-intro {
+    text-align: left !important;
+    margin-left: 0;
+}
+
+/* Image + numbered items side-by-side layout */
+.image-content-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+    margin-top: 40px;
+}
+
+.image-content-split .split-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.image-content-split .split-items {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+@media (max-width: 768px) {
+    .image-content-split {
+        grid-template-columns: 1fr;
+    }
+}
+/* Styling for all navigation links */
+.navbar nav a {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    padding-bottom: 4px; /* Creates spacing between text and the line */
+    transition: border-color 0.2s ease;
+}
+
+/* Underline for the active page link */
+.navbar nav a.active {
+    border-bottom: 2px solid currentColor; /* Draws line matching text color */
+}
+
+/* Optional: Subtle hover effect for inactive links */
+.navbar nav a:hover {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+}
+/* ==========================================
+   ABOUT PAGE STYLES
+   ========================================== */
+
+body.about-page {
+    background-color: #e1e9e3;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 60px auto 100px auto;
+    padding: 0 60px;
+}
+
+.about-section {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px 60px;
+    align-items: start;
+    margin-bottom: 0;
+    padding-bottom: 48px;
+    border-bottom: 3px solid #000000 !important;
+}
+
+.about-section:last-child {
+    border-bottom: none;
+}
+
+.section-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.bio-content p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    color: #222;
+}
+
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: baseline;
+    gap: 16px;
+}
+
+.timeline-date {
+    font-size: 0.95rem;
+    color: #777;
+    font-weight: 500;
+}
+
+.timeline-details h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #111;
+}
+
+.timeline-details p {
+    font-size: 0.98rem;
+    color: #555;
+    margin: 0;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Inline timeline link (e.g. Zeytin Collective) */
+.timeline-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: opacity 0.2s ease;
+}
+
+.timeline-link:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+    .about-section {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* ===========================================
+   GLOBAL FONT PAIRING (Unbounded & Plus Jakarta Sans)
+   =========================================== */
+
+/* Body Copy & UI Elements -> Plus Jakarta Sans */
+body, p, span, nav a, .timeline-details p, .skill-tag, .timeline-date {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Header Navbar Logo & Links -> White text on dark bar */
+.navbar .logo,
+.navbar nav a {
+    font-family: 'Unbounded', sans-serif !important;
+    font-weight: 800 !important;
+    color: #ffffff !important; /* Forces logo & nav items to be white */
+    letter-spacing: -0.02em;
+}
+
+/* Page Headings (Hero title, section labels, etc.) -> Black text */
+h1, h2, h3,
+.landing-hero h1 {
+    font-family: 'Unbounded', sans-serif !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em;
+    color: #000000 !important; /* Keeps UX DESIGNER & RESEARCHER and section headings black */
+}
+
+/* ===========================================
+   ABOUT PAGE STYLES (Enlarged & Pure Black Headings)
+   =========================================== */
+
+/* Section Labels (BACKGROUND, EDUCATION, WORK EXPERIENCES, SKILLS) */
+.about-section .section-label {
+    font-family: 'Unbounded', sans-serif !important;
+    font-size: 1.1rem; /* Increased size */
+    font-weight: 800 !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #000000 !important; /* Pure black */
+    margin-bottom: 28px;
+}
+
+/* Subheadings inside Timeline (School & Company names) */
+.timeline-details h3 {
+    font-family: 'Unbounded', sans-serif !important;
+    font-size: 1.25rem; /* Larger, readable size */
+    font-weight: 800 !important;
+    color: #000000 !important; /* Pure black */
+    margin: 0 0 6px 0;
+}
+
+/* Subheading descriptions (Degrees & Job Titles) */
+.timeline-details p {
+    font-size: 1.05rem;
+    color: #000000 !important; /* Pure black */
+    font-weight: 500;
+}
+
+/* Timeline Dates */
+.timeline-date {
+    font-size: 1rem;
+    color: #000000 !important; /* Pure black */
+    font-weight: 600;
+}
+
+/* Bio Paragraph Text */
+.bio-content p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #000000 !important; /* Pure black */
+    margin-bottom: 20px;
+}
+
+/* Skills Badges */
+.skill-tag {
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+}
+/* ===========================================
+   ABOUT PAGE SECTION DIVIDERS (Guaranteed Fix)
+   =========================================== */
+
+/* Force visible solid line under each about section */
+main .about-section,
+body.about-page .about-section {
+    padding-bottom: 48px !important;
+    margin-bottom: 48px !important;
+    border-bottom: 3px solid #000000 !important;
+}
+
+/* Remove the line under the final section (Skills) */
+main .about-section:last-child,
+body.about-page .about-section:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+/* ===========================================
+   GLOBAL FOOTER STYLES & ROTATING ANIMATION
+   =========================================== */
+
+.site-footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 80px 40px;
+    margin-top: 100px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Left Side Layout */
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.footer-logo {
+    font-family: 'Unbounded', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 2.2rem;
+    color: #ffffff !important;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.02em;
+}
+
+.footer-email {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity 0.2s ease;
+}
+
+.footer-email:hover {
+    opacity: 0.8;
+}
+
+.footer-status {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #aaaaaa;
+    margin: 0 0 12px 0;
+}
+
+/* Circular Social Buttons */
+.footer-socials {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 50%;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    background-color: #eeeeee;
+}
+
+/* Right Side: Rotating SVG Graphic */
+.footer-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Continuous rotation keyframes */
+@keyframes continuousSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 48px;
+    }
+}
+/* ===========================================
+   FOOTER ANIMATION & LAYOUT
+   =========================================== */
+
+.footer-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes continuousSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* ==========================================
+   ABOUT PAGE ONLY: Floating Photo Flash Effect
+   ========================================== */
+/* ======================================== */
+/* ABOUT HERO CONTAINER */
+/* ======================================== */
+
+.about-hero {
+    position: relative;
+    width: 100%;
+    min-height: 1000px;
+    padding: 120px 6% 130px;
+    overflow: hidden;
+}
+
+/* ======================================== */
+/* GENERATED PHOTO LAYER */
+/* ======================================== */
+
+.photo-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+}
