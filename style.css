@@ -936,6 +936,52 @@ body.about-page .about-section:last-child {
 /* ABOUT HERO CONTAINER */
 /* ======================================== */
 
+/* ===========================================
+   ABOUT PAGE: Scrolling Photo Strip
+   =========================================== */
+
+.photo-scroll-strip {
+    width: 100%;
+    overflow: hidden;
+    padding: 48px 0 40px;
+    background-color: #e1e9e3;
+}
+
+.photo-scroll-track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    animation: scrollLeft 28s linear infinite;
+}
+
+.photo-scroll-track:hover {
+    animation-play-state: paused;
+}
+
+.scroll-photo {
+    flex-shrink: 0;
+    height: 260px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+}
+
+.scroll-photo:nth-child(odd)  { transform: rotate(-2deg); }
+.scroll-photo:nth-child(even) { transform: rotate(1.5deg); }
+
+.scroll-photo img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+@keyframes scrollLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
 .about-hero {
     position: relative;
     width: 100%;
