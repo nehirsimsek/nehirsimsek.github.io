@@ -21,7 +21,7 @@
     <nav>
         <a href="index.html#work" class="active">WORK</a>
         <a href="about.html">ABOUT</a>
-        <a href="index.html#contact">CONTACT</a>
+        <a href="#contact">CONTACT</a>
         <a href="https://www.behance.net/nehirsimsekk" target="_blank" rel="noopener noreferrer">BEHANCE</a>
     </nav>
 </header>
@@ -67,56 +67,91 @@
     <main class="container">
         <section id="work" class="work-section">
             <h2 class="section-title">SELECTED WORKS</h2>
-
-            <div class="work-grid">
-                <!-- P1: tall left -->
-                <a href="sap-project.html" class="work-card">
-                    <div class="image-wrapper">
-                        <video autoplay muted loop playsinline>
-                            <source src="sap-video.mov" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-num">01</span>
-                        <span class="card-name">SAP Engagement Cloud Research</span>
-                    </div>
-                </a>
-
-                <!-- P2: center top -->
-                <a href="project-2.html" class="work-card">
-                    <div class="image-wrapper">
-                        <img src="sofra banner.png" alt="Sofra App Research & Design">
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-num">02</span>
-                        <span class="card-name">Sofra App Research & Design</span>
-                    </div>
-                </a>
-
-                <!-- P3: center bottom -->
-                <a href="project-3.html" class="work-card">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/600x400" alt="Project 3 Preview">
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-num">03</span>
-                        <span class="card-name">PROJECT NAME THREE</span>
-                    </div>
-                </a>
-
-                <!-- P4: tall right -->
-                <a href="project-4.html" class="work-card">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/600x400" alt="Project 4 Preview">
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-num">04</span>
-                        <span class="card-name">PROJECT NAME FOUR</span>
-                    </div>
-                </a>
-            </div>
         </section>
     </main>
+
+    <div class="works-scroll-strip">
+                <div class="works-scroll-track">
+                    <a href="sap-project.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <video autoplay muted loop playsinline>
+                                <source src="sap-video.mov" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">01</span>
+                            <span class="card-name">SAP Engagement Cloud Research</span>
+                        </div>
+                    </a>
+                    <a href="project-2.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <img src="sofra banner.png" alt="Sofra App Research & Design">
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">02</span>
+                            <span class="card-name">Sofra App Research & Design</span>
+                        </div>
+                    </a>
+                    <a href="project-3.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <img src="https://via.placeholder.com/600x400" alt="Project 3 Preview">
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">03</span>
+                            <span class="card-name">PROJECT NAME THREE</span>
+                        </div>
+                    </a>
+                    <a href="project-4.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <img src="https://via.placeholder.com/600x400" alt="Project 4 Preview">
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">04</span>
+                            <span class="card-name">PROJECT NAME FOUR</span>
+                        </div>
+                    </a>
+                    <!-- duplicated for seamless loop -->
+                    <a href="sap-project.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <video autoplay muted loop playsinline>
+                                <source src="sap-video.mov" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">01</span>
+                            <span class="card-name">SAP Engagement Cloud Research</span>
+                        </div>
+                    </a>
+                    <a href="project-2.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <img src="sofra banner.png" alt="Sofra App Research & Design">
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">02</span>
+                            <span class="card-name">Sofra App Research & Design</span>
+                        </div>
+                    </a>
+                    <a href="project-3.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <img src="https://via.placeholder.com/600x400" alt="Project 3 Preview">
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">03</span>
+                            <span class="card-name">PROJECT NAME THREE</span>
+                        </div>
+                    </a>
+                    <a href="project-4.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <img src="https://via.placeholder.com/600x400" alt="Project 4 Preview">
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">04</span>
+                            <span class="card-name">PROJECT NAME FOUR</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
     <footer class="site-footer" id="contact">
     <div class="footer-container">
         <!-- Left Side: Brand, Bio & Links -->
@@ -148,6 +183,71 @@
     />
         </div>
     </footer>
+    <script>
+    (function () {
+        const track = document.querySelector('.works-scroll-track');
+        if (!track) return;
+
+        let pos = 0;
+        let isDragging = false;
+        let startX = 0;
+        let startPos = 0;
+        let totalDrag = 0;
+
+        function halfWidth() { return track.scrollWidth / 2; }
+
+        function setPos(p) {
+            const h = halfWidth();
+            pos = ((p % h) + h) % h;
+            track.style.transform = `translateX(-${pos}px)`;
+        }
+
+        (function loop() {
+            if (!isDragging) setPos(pos + 0.6);
+            requestAnimationFrame(loop);
+        })();
+
+        track.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX;
+            startPos = pos;
+            totalDrag = 0;
+            track.classList.add('is-dragging');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            totalDrag += Math.abs(e.movementX);
+            setPos(startPos + (startX - e.pageX));
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            track.classList.remove('is-dragging');
+        });
+
+        track.addEventListener('click', (e) => {
+            if (totalDrag > 5) e.preventDefault();
+        }, true);
+
+        track.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX;
+            startPos = pos;
+            totalDrag = 0;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const dx = startX - e.touches[0].pageX;
+            totalDrag += Math.abs(dx);
+            setPos(startPos + dx);
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => { isDragging = false; });
+    })();
+    </script>
+</body>
     <script src="transitions.js"></script>
     <script>
     document.addEventListener('mousemove', (e) => {

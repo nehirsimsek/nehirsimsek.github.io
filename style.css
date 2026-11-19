@@ -940,6 +940,72 @@ body.about-page .about-section:last-child {
    ABOUT PAGE: Scrolling Photo Strip
    =========================================== */
 
+/* ===========================================
+   INDEX PAGE: Scrolling Works Strip
+   =========================================== */
+
+.works-scroll-strip {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0 40px;
+}
+
+.works-scroll-track {
+    display: flex;
+    gap: 32px;
+    width: max-content;
+    cursor: grab;
+    user-select: none;
+}
+
+.works-scroll-track.is-dragging {
+    cursor: grabbing;
+}
+
+.works-scroll-card {
+    flex-shrink: 0;
+    width: 420px;
+    text-decoration: none;
+    color: #111111;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.works-scroll-card:nth-child(odd)  { transform: rotate(-1deg); }
+.works-scroll-card:nth-child(even) { transform: rotate(1deg); }
+
+.works-scroll-thumb {
+    width: 100%;
+    height: 280px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+    background-color: #e0d5d2;
+}
+
+.works-scroll-thumb img,
+.works-scroll-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.works-scroll-thumb video {
+    transform: scale(1.28);
+}
+
+.works-scroll-card:hover .works-scroll-thumb img {
+    transform: scale(1.03);
+}
+
+.works-scroll-card:hover .works-scroll-thumb video {
+    transform: scale(1.31);
+}
+
+
 .photo-scroll-strip {
     width: 100%;
     overflow: hidden;
