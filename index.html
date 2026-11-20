@@ -76,7 +76,7 @@
                     <a href="sap-project.html" class="works-scroll-card">
                         <div class="works-scroll-thumb">
                             <video autoplay muted loop playsinline>
-                                <source src="sap-video.mov" type="video/mp4">
+                                <source src="sap/sap-video.mov" type="video/mp4">
                             </video>
                         </div>
                         <div class="card-meta">
@@ -93,38 +93,35 @@
                             <span class="card-name">Sofra App Research & Design</span>
                         </div>
                     </a>
-                    <a href="project-3.html" class="works-scroll-card">
+                    <a href="mercedes-project.html" class="works-scroll-card">
                         <div class="works-scroll-thumb">
-                            <img src="https://via.placeholder.com/600x400" alt="Project 3 Preview">
+                            <img src="mercedes banner copy.png" alt="Mercedes Silk Road">
                         </div>
                         <div class="card-meta">
                             <span class="card-num">03</span>
-                            <span class="card-name">PROJECT NAME THREE</span>
+                            <span class="card-name">Mercedes Silk Road, In-Car Experience Design</span>
                         </div>
                     </a>
-                    <a href="project-4.html" class="works-scroll-card">
+                    <a href="story-station-project.html" class="works-scroll-card">
                         <div class="works-scroll-thumb">
-                            <img src="https://via.placeholder.com/600x400" alt="Project 4 Preview">
+                            <img src="story station/Story-Station.png" alt="Story Station Design" class="crop-bordered" style="object-position: right center;">
                         </div>
                         <div class="card-meta">
                             <span class="card-num">04</span>
-                            <span class="card-name">PROJECT NAME FOUR</span>
+                            <span class="card-name">Story Station Design</span>
                         </div>
                     </a>
-                    <!-- duplicated for seamless loop -->
+                    <a href="zeytin-project.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <img src="zeytin/zeytin-banner.png.png" alt="Zeytin Collective Brand Design">
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">05</span>
+                            <span class="card-name">Zeytin Collective Brand Design</span>
+                        </div>
+                    </a>
                     <a href="sap-project.html" class="works-scroll-card">
                         <div class="works-scroll-thumb">
-                            <video autoplay muted loop playsinline>
-                                <source src="sap-video.mov" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="card-meta">
-                            <span class="card-num">01</span>
-                            <span class="card-name">SAP Engagement Cloud Research</span>
-                        </div>
-                    </a>
-                    <a href="project-2.html" class="works-scroll-card">
-                        <div class="works-scroll-thumb">
                             <img src="sofra banner.png" alt="Sofra App Research & Design">
                         </div>
                         <div class="card-meta">
@@ -132,22 +129,31 @@
                             <span class="card-name">Sofra App Research & Design</span>
                         </div>
                     </a>
-                    <a href="project-3.html" class="works-scroll-card">
+                    <a href="mercedes-project.html" class="works-scroll-card">
                         <div class="works-scroll-thumb">
-                            <img src="https://via.placeholder.com/600x400" alt="Project 3 Preview">
+                            <img src="mercedes banner copy.png" alt="Mercedes Silk Road">
                         </div>
                         <div class="card-meta">
                             <span class="card-num">03</span>
-                            <span class="card-name">PROJECT NAME THREE</span>
+                            <span class="card-name">Mercedes Silk Road, In-Car Experience Design</span>
                         </div>
                     </a>
-                    <a href="project-4.html" class="works-scroll-card">
+                    <a href="story-station-project.html" class="works-scroll-card">
                         <div class="works-scroll-thumb">
-                            <img src="https://via.placeholder.com/600x400" alt="Project 4 Preview">
+                            <img src="story station/Story-Station.png" alt="Story Station Design" class="crop-bordered" style="object-position: right center;">
                         </div>
                         <div class="card-meta">
                             <span class="card-num">04</span>
-                            <span class="card-name">PROJECT NAME FOUR</span>
+                            <span class="card-name">Story Station Design</span>
+                        </div>
+                    </a>
+                    <a href="zeytin-project.html" class="works-scroll-card">
+                        <div class="works-scroll-thumb">
+                            <img src="zeytin/zeytin-banner.png.png" alt="Zeytin Collective Brand Design">
+                        </div>
+                        <div class="card-meta">
+                            <span class="card-num">05</span>
+                            <span class="card-name">Zeytin Collective Brand Design</span>
                         </div>
                     </a>
                 </div>
@@ -187,24 +193,60 @@
     <script>
     (function () {
         const track = document.querySelector('.works-scroll-track');
-        if (!track) return;
+        const strip = document.querySelector('.works-scroll-strip');
+        if (!track || !strip) return;
 
         let pos = 0;
+        let repeatW = 0;
+        let speed = 0.5;
+        let targetSpeed = 0.5;
         let isDragging = false;
         let startX = 0;
         let startPos = 0;
         let totalDrag = 0;
+        let pressTime = 0;
+        let lastDragX = 0;
+        let lastDragTime = 0;
+        let dragVelocity = 0;
 
-        function halfWidth() { return track.scrollWidth / 2; }
+        function measureRepeat() {
+            const cards = track.querySelectorAll('.works-scroll-card');
+            const n = Math.floor(cards.length / 2);
+            if (!n || !cards[n]) return;
+            const d = cards[n].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
+            if (d > 0) repeatW = d;
+        }
+
+        requestAnimationFrame(measureRepeat);
+        window.addEventListener('load', measureRepeat);
+        window.addEventListener('resize', measureRepeat);
 
         function setPos(p) {
-            const h = halfWidth();
-            pos = ((p % h) + h) % h;
+            if (!repeatW) return;
+            pos = ((p % repeatW) + repeatW) % repeatW;
             track.style.transform = `translateX(-${pos}px)`;
         }
 
+        strip.addEventListener('mouseleave', () => { targetSpeed = 0.5; });
+        strip.addEventListener('mousemove', (e) => {
+            if (isDragging) return;
+            const rect = strip.getBoundingClientRect();
+            const centered = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            const dead = 0.25;
+            if (Math.abs(centered) < dead) {
+                targetSpeed = 0;
+            } else {
+                const sign = centered > 0 ? 1 : -1;
+                const t = (Math.abs(centered) - dead) / (1 - dead);
+                targetSpeed = sign * t * 5;
+            }
+        });
+
         (function loop() {
-            if (!isDragging) setPos(pos + 0.6);
+            if (!isDragging) {
+                speed += (targetSpeed - speed) * 0.06;
+                setPos(pos + speed);
+            }
             requestAnimationFrame(loop);
         })();
 
@@ -213,22 +255,33 @@
             startX = e.pageX;
             startPos = pos;
             totalDrag = 0;
+            dragVelocity = 0;
+            lastDragX = e.pageX;
+            lastDragTime = performance.now();
+            pressTime = performance.now();
             track.classList.add('is-dragging');
         });
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
+            const now = performance.now();
+            const dt = now - lastDragTime;
+            if (dt > 0) dragVelocity = (lastDragX - e.pageX) / dt * 16;
+            lastDragX = e.pageX;
+            lastDragTime = now;
             totalDrag += Math.abs(e.movementX);
             setPos(startPos + (startX - e.pageX));
         });
 
         document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
             isDragging = false;
             track.classList.remove('is-dragging');
+            speed = dragVelocity;
         });
 
         track.addEventListener('click', (e) => {
-            if (totalDrag > 5) e.preventDefault();
+            if (totalDrag > 5 || performance.now() - pressTime > 150) e.preventDefault();
         }, true);
 
         track.addEventListener('touchstart', (e) => {
@@ -236,16 +289,29 @@
             startX = e.touches[0].pageX;
             startPos = pos;
             totalDrag = 0;
+            dragVelocity = 0;
+            lastDragX = e.touches[0].pageX;
+            lastDragTime = performance.now();
+            pressTime = performance.now();
         }, { passive: true });
 
         document.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
-            const dx = startX - e.touches[0].pageX;
+            const now = performance.now();
+            const dt = now - lastDragTime;
+            const dx = lastDragX - e.touches[0].pageX;
+            if (dt > 0) dragVelocity = dx / dt * 16;
+            lastDragX = e.touches[0].pageX;
+            lastDragTime = now;
             totalDrag += Math.abs(dx);
-            setPos(startPos + dx);
+            setPos(startPos + (startX - e.touches[0].pageX));
         }, { passive: true });
 
-        document.addEventListener('touchend', () => { isDragging = false; });
+        document.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            speed = dragVelocity;
+        });
     })();
     </script>
 </body>

@@ -193,6 +193,16 @@ body.page-exit {
     color: #111111;
     text-align: right;
 }
+
+.card-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #888888;
+    text-align: right;
+    margin-top: 2px;
+    padding: 0;
+}
 /* --------------------------------------------------
    COLOR THEME VARIATIONS
 -------------------------------------------------- */
@@ -1002,8 +1012,12 @@ body.about-page .about-section:last-child {
     gap: 10px;
 }
 
-.works-scroll-card:nth-child(odd)  { transform: rotate(-1deg); }
-.works-scroll-card:nth-child(even) { transform: rotate(1deg); }
+.works-scroll-card:nth-child(5n+1),
+.works-scroll-card:nth-child(5n+3),
+.works-scroll-card:nth-child(5n+5) { transform: rotate(-1deg); }
+
+.works-scroll-card:nth-child(5n+2),
+.works-scroll-card:nth-child(5n+4) { transform: rotate(1deg); }
 
 .works-scroll-thumb {
     width: 100%;
@@ -1029,6 +1043,14 @@ body.about-page .about-section:last-child {
 
 .works-scroll-card:hover .works-scroll-thumb img {
     transform: scale(1.03);
+}
+
+.works-scroll-thumb img.crop-bordered {
+    transform: scale(1.08);
+}
+
+.works-scroll-card:hover .works-scroll-thumb img.crop-bordered {
+    transform: scale(1.11);
 }
 
 .works-scroll-card:hover .works-scroll-thumb video {
