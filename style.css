@@ -996,6 +996,7 @@ body.about-page .about-section:last-child {
     width: max-content;
     cursor: grab;
     user-select: none;
+    will-change: transform;
 }
 
 .works-scroll-track.is-dragging {

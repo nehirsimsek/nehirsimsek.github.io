@@ -196,62 +196,57 @@
         const strip = document.querySelector('.works-scroll-strip');
         if (!track || !strip) return;
 
-        // Clone first 5 cards to create a 3rd copy → [A|B|C]
-        // We always show B (middle), wrapping between A and C keeps the seam invisible
-        const cards = Array.from(track.querySelectorAll('.works-scroll-card'));
-        const n = cards.length / 2; // 5 cards per set
-        for (let i = 0; i < n; i++) {
-            track.appendChild(cards[i].cloneNode(true));
-        }
-        // Track now has 15 cards: [original|dup1|dup2]
+        // Build 3 identical sets so the middle set never reaches a seam
+        const origCards = Array.from(track.querySelectorAll('.works-scroll-card'));
+        const setSize = origCards.length / 2; // 5 cards per set (HTML has 2 sets already)
+        for (let i = 0; i < setSize; i++) track.appendChild(origCards[i].cloneNode(true));
+        // Track now has 3 × setSize = 15 cards
 
         let repeatW = 0;
-        let pos = 0;
-        let speed = 0.5;
+        let pos    = 0;
+        let speed  = 0.5;
         let targetSpeed = 0.5;
-        let isDragging = false;
-        let startX = 0;
-        let startPos = 0;
-        let totalDrag = 0;
-        let pressTime = 0;
-        let lastDragX = 0;
-        let lastDragTime = 0;
-        let dragVelocity = 0;
+        let isDragging  = false;
+        let startX = 0, startPos = 0, totalDrag = 0, pressTime = 0;
+        let lastDragX = 0, lastDragTime = 0, dragVelocity = 0;
 
+        // repeatW = width of one set including its trailing gap
+        // Formula: (totalScrollWidth + 1 gap) / numSets
         function measureRepeat() {
-            const all = track.querySelectorAll('.works-scroll-card');
-            if (all.length < n + 1) return;
-            const d = all[n].getBoundingClientRect().left - all[0].getBoundingClientRect().left;
-            if (d > 0) {
-                repeatW = d;
-                pos = repeatW; // start in middle set
-                track.style.transform = `translateX(-${pos}px)`;
-            }
-        }
-
-        // Double rAF ensures layout is computed before measuring
-        requestAnimationFrame(() => requestAnimationFrame(measureRepeat));
-        window.addEventListener('resize', measureRepeat);
-
-        function setPos(p) {
-            if (!repeatW) return;
-            // Keep pos in [0, 2*repeatW) — stays within A+B, wrapping B↔C is seamless
-            pos = ((p % (2 * repeatW)) + 2 * repeatW) % (2 * repeatW);
+            const sw = track.scrollWidth;
+            if (sw < 100) { requestAnimationFrame(measureRepeat); return; } // layout not ready yet
+            const st  = getComputedStyle(track);
+            const gap = parseFloat(st.gap) || parseFloat(st.columnGap) || 32;
+            const w   = (sw + gap) / 3;
+            repeatW = w;
+            pos = repeatW; // start in the middle set
             track.style.transform = `translateX(-${pos}px)`;
         }
 
+        requestAnimationFrame(measureRepeat);
+        window.addEventListener('resize', () => {
+            measureRepeat();
+        });
+
+        function setPos(p) {
+            // Keep pos in [repeatW, 2×repeatW) — both wrap edges land inside
+            // the identical trailing gap between copies, so the seam is invisible
+            pos = (((p - repeatW) % repeatW) + repeatW) % repeatW + repeatW;
+            track.style.transform = `translateX(-${pos}px)`;
+        }
+
+        // Hover: left side scrolls backward, right side scrolls forward
         strip.addEventListener('mouseleave', () => { targetSpeed = 0.5; });
         strip.addEventListener('mousemove', (e) => {
             if (isDragging) return;
-            const rect = strip.getBoundingClientRect();
-            const centered = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            const r = strip.getBoundingClientRect();
+            const c = ((e.clientX - r.left) / r.width) * 2 - 1; // -1..1
             const dead = 0.25;
-            if (Math.abs(centered) < dead) {
+            if (Math.abs(c) < dead) {
                 targetSpeed = 0;
             } else {
-                const sign = centered > 0 ? 1 : -1;
-                const t = (Math.abs(centered) - dead) / (1 - dead);
-                targetSpeed = sign * t * 5;
+                const sign = c > 0 ? 1 : -1;
+                targetSpeed = sign * ((Math.abs(c) - dead) / (1 - dead)) * 5;
             }
         });
 
@@ -263,67 +258,51 @@
             requestAnimationFrame(loop);
         })();
 
+        // Drag
         track.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX;
-            startPos = pos;
-            totalDrag = 0;
-            dragVelocity = 0;
-            lastDragX = e.pageX;
-            lastDragTime = performance.now();
+            isDragging = true; startX = e.pageX; startPos = pos;
+            totalDrag = 0; dragVelocity = 0;
+            lastDragX = e.pageX; lastDragTime = performance.now();
             pressTime = performance.now();
             track.classList.add('is-dragging');
         });
-
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            const now = performance.now();
-            const dt = now - lastDragTime;
+            const now = performance.now(), dt = now - lastDragTime;
             if (dt > 0) dragVelocity = (lastDragX - e.pageX) / dt * 16;
-            lastDragX = e.pageX;
-            lastDragTime = now;
+            lastDragX = e.pageX; lastDragTime = now;
             totalDrag += Math.abs(e.movementX);
             setPos(startPos + (startX - e.pageX));
         });
-
         document.addEventListener('mouseup', () => {
             if (!isDragging) return;
             isDragging = false;
             track.classList.remove('is-dragging');
             speed = dragVelocity;
         });
-
         track.addEventListener('click', (e) => {
             if (totalDrag > 5 || performance.now() - pressTime > 150) e.preventDefault();
         }, true);
 
+        // Touch
         track.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].pageX;
-            startPos = pos;
-            totalDrag = 0;
-            dragVelocity = 0;
-            lastDragX = e.touches[0].pageX;
-            lastDragTime = performance.now();
+            isDragging = true; startX = e.touches[0].pageX; startPos = pos;
+            totalDrag = 0; dragVelocity = 0;
+            lastDragX = e.touches[0].pageX; lastDragTime = performance.now();
             pressTime = performance.now();
         }, { passive: true });
-
         document.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
-            const now = performance.now();
-            const dt = now - lastDragTime;
+            const now = performance.now(), dt = now - lastDragTime;
             const dx = lastDragX - e.touches[0].pageX;
             if (dt > 0) dragVelocity = dx / dt * 16;
-            lastDragX = e.touches[0].pageX;
-            lastDragTime = now;
+            lastDragX = e.touches[0].pageX; lastDragTime = now;
             totalDrag += Math.abs(dx);
             setPos(startPos + (startX - e.touches[0].pageX));
         }, { passive: true });
-
         document.addEventListener('touchend', () => {
             if (!isDragging) return;
-            isDragging = false;
-            speed = dragVelocity;
+            isDragging = false; speed = dragVelocity;
         });
     })();
     </script>
