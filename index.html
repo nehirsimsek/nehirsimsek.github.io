@@ -196,8 +196,17 @@
         const strip = document.querySelector('.works-scroll-strip');
         if (!track || !strip) return;
 
-        let pos = 0;
+        // Clone first 5 cards to create a 3rd copy → [A|B|C]
+        // We always show B (middle), wrapping between A and C keeps the seam invisible
+        const cards = Array.from(track.querySelectorAll('.works-scroll-card'));
+        const n = cards.length / 2; // 5 cards per set
+        for (let i = 0; i < n; i++) {
+            track.appendChild(cards[i].cloneNode(true));
+        }
+        // Track now has 15 cards: [original|dup1|dup2]
+
         let repeatW = 0;
+        let pos = 0;
         let speed = 0.5;
         let targetSpeed = 0.5;
         let isDragging = false;
@@ -210,20 +219,24 @@
         let dragVelocity = 0;
 
         function measureRepeat() {
-            const cards = track.querySelectorAll('.works-scroll-card');
-            const n = Math.floor(cards.length / 2);
-            if (!n || !cards[n]) return;
-            const d = cards[n].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
-            if (d > 0) repeatW = d;
+            const all = track.querySelectorAll('.works-scroll-card');
+            if (all.length < n + 1) return;
+            const d = all[n].getBoundingClientRect().left - all[0].getBoundingClientRect().left;
+            if (d > 0) {
+                repeatW = d;
+                pos = repeatW; // start in middle set
+                track.style.transform = `translateX(-${pos}px)`;
+            }
         }
 
-        requestAnimationFrame(measureRepeat);
-        window.addEventListener('load', measureRepeat);
+        // Double rAF ensures layout is computed before measuring
+        requestAnimationFrame(() => requestAnimationFrame(measureRepeat));
         window.addEventListener('resize', measureRepeat);
 
         function setPos(p) {
             if (!repeatW) return;
-            pos = ((p % repeatW) + repeatW) % repeatW;
+            // Keep pos in [0, 2*repeatW) — stays within A+B, wrapping B↔C is seamless
+            pos = ((p % (2 * repeatW)) + 2 * repeatW) % (2 * repeatW);
             track.style.transform = `translateX(-${pos}px)`;
         }
 
@@ -243,7 +256,7 @@
         });
 
         (function loop() {
-            if (!isDragging) {
+            if (!isDragging && repeatW) {
                 speed += (targetSpeed - speed) * 0.06;
                 setPos(pos + speed);
             }
