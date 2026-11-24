@@ -1120,3 +1120,221 @@ body.about-page .about-section:last-child {
     overflow: hidden;
     pointer-events: none;
 }
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+/* --- Fluid typography: smooth scale across all widths --- */
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw + 0.5rem, 5.5rem);
+}
+
+.hero .intro {
+    font-size: clamp(1rem, 1.5vw + 0.3rem, 1.35rem);
+}
+
+.case-study h1 {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+}
+
+.footer-logo {
+    font-size: clamp(1.3rem, 2.5vw, 2.2rem) !important;
+}
+
+.section-title {
+    font-size: clamp(1.1rem, 2vw, 1.8rem);
+}
+
+/* --- Tablet landscape & smaller desktops (≤ 1100px) --- */
+@media (max-width: 1100px) {
+    .container {
+        padding: 60px 40px;
+    }
+
+    .case-study,
+    .sap-case-study {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+
+    .about-container {
+        padding: 0 40px;
+    }
+
+    /* Scale floating images down proportionally as viewport shrinks */
+    .floating-objects .float-item:nth-child(1) { max-width: 16vw !important; } /* Ankara  230px */
+    .floating-objects .float-item:nth-child(2) { max-width: 19vw !important; } /* Olive   260px */
+    .floating-objects .float-item:nth-child(3) { max-width: 5vw  !important; } /* Flower   60px */
+    .floating-objects .float-item:nth-child(4) { max-width: 22vw !important; } /* Girls   310px */
+    .floating-objects .float-item:nth-child(5) { max-width: 15vw !important; } /* Walking 210px */
+    .floating-objects .float-item:nth-child(6) { max-width: 18vw !important; } /* One-girl 250px */
+
+    /* Vertically center the text so it sits between the top and bottom image clusters */
+    .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* --- Tablet portrait & large phones (≤ 768px) --- */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 16px 20px;
+    }
+
+    .navbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 12px;
+    }
+
+    .navbar nav a {
+        margin-left: 0;
+        font-size: 0.72rem;
+    }
+
+    /* Hero — reduce side padding on mobile, images stay in position */
+    .hero {
+        padding: 60px 20px 80px;
+    }
+
+    /* Larger images on mobile — override the 1100px vw caps */
+    .floating-objects .float-item:nth-child(1) { max-width: 28vw !important; }
+    .floating-objects .float-item:nth-child(2) { max-width: 30vw !important; }
+    .floating-objects .float-item:nth-child(3) { max-width: 7vw  !important; }
+    .floating-objects .float-item:nth-child(4) { max-width: 32vw !important; }
+    .floating-objects .float-item:nth-child(5) { max-width: 24vw !important; }
+    .floating-objects .float-item:nth-child(6) { max-width: 28vw !important; }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    /* Main container */
+    .container {
+        padding: 48px 24px;
+    }
+
+    /* Case study pages */
+    .case-study,
+    .sap-case-study {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-top: 40px;
+    }
+
+    .case-study .stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .case-study .stat-number {
+        font-size: 2rem;
+    }
+
+    .case-study .details {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* About page */
+    .about-container {
+        padding: 0 24px;
+        margin: 40px auto 60px auto;
+    }
+
+    .about-section {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Work scroll strip */
+    .works-scroll-card {
+        width: 300px;
+    }
+
+    .works-scroll-thumb {
+        height: 200px;
+    }
+
+    /* Photo scroll strip */
+    .scroll-photo {
+        height: 200px;
+    }
+
+    /* Footer */
+    .site-footer {
+        padding: 48px 24px;
+        margin-top: 60px;
+    }
+
+    .footer-right img {
+        width: 180px !important;
+        height: 180px !important;
+    }
+}
+
+/* --- Small phones (≤ 480px) --- */
+@media (max-width: 480px) {
+    /* Navbar */
+    .navbar {
+        padding: 14px 16px;
+    }
+
+    .navbar .logo {
+        font-size: 1rem;
+    }
+
+    .navbar nav a {
+        font-size: 0.65rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 48px 16px 60px;
+    }
+
+    /* Container */
+    .container {
+        padding: 32px 16px;
+    }
+
+    /* Case study — 1-col stats at very small screens */
+    .case-study,
+    .sap-case-study {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .case-study .stats {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* About */
+    .about-container {
+        padding: 0 16px;
+    }
+
+    /* Work scroll */
+    .works-scroll-card {
+        width: 240px;
+    }
+
+    .works-scroll-thumb {
+        height: 160px;
+    }
+
+    /* Footer */
+    .site-footer {
+        padding: 40px 16px;
+    }
+
+    .footer-right img {
+        width: 140px !important;
+        height: 140px !important;
+    }
+}
