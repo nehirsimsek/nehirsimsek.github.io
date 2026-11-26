@@ -1357,3 +1357,79 @@ body.about-page .about-section:last-child {
         height: 140px !important;
     }
 }
+/* ── Scroll Reveal ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Project Navigation ── */
+.project-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 2px solid #111111;
+}
+.project-nav-item {
+    padding: 48px 60px;
+    text-decoration: none;
+    color: #111111;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: opacity 0.2s ease;
+}
+.project-nav-item:hover {
+    opacity: 0.55;
+}
+.project-nav-item.nav-next {
+    text-align: right;
+    align-items: flex-end;
+    border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+.project-nav-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.45;
+}
+.project-nav-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: #111111;
+}
+@media (max-width: 600px) {
+    .project-nav { grid-template-columns: 1fr; }
+    .project-nav-item.nav-next {
+        text-align: left;
+        align-items: flex-start;
+        border-left: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    .project-nav-item { padding: 32px 24px; }
+}
+
+/* ── Equal detail column spacing (all case studies) ── */
+.case-study .details {
+    gap: 0 !important;
+}
+.case-study .detail {
+    padding-right: 48px;
+}
+.case-study .detail + .detail {
+    padding-left: 48px;
+    border-left: 1px solid rgba(17, 17, 17, 0.18);
+}
+.case-study .detail:last-child {
+    padding-right: 0;
+}

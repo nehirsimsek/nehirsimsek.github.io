@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeytin Collective Brand Design | Nehir</title>
+
+    <link rel="icon" type="image/png" href="grid-copy.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500;700&family=Unbounded:wght@800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body[data-theme="zeytin"] {
+            background-color: #C8E6E1;
+            color: #111111;
+        }
+
+        /* Force h1 left-aligned inside the case study hero */
+        .case-study .hero h1 {
+            text-align: left !important;
+        }
+
+        .case-study .section {
+            margin-bottom: 120px !important;
+            padding-top: 100px !important;
+        }
+
+        /* Portrait photo grid — keep same height across columns */
+        .photo-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 2rem;
+        }
+        .photo-grid-3 img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Sticker — centered, cropped to circle via clip-path */
+        .sticker-mid {
+            display: flex;
+            justify-content: center;
+            padding: 60px 0 80px;
+        }
+        .sticker-mid img {
+            max-width: 420px;
+            width: 70%;
+            clip-path: circle(42% at 54% 57%);
+        }
+
+        @media (max-width: 700px) {
+            .photo-grid-3 { grid-template-columns: 1fr; }
+            .sticker-mid img { width: 85%; }
+        }
+    </style>
+</head>
+
+<body data-theme="zeytin">
+
+    <header class="navbar">
+        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">Nehir Şimşek</a></div>
+        <nav>
+            <a href="index.html#work">WORK</a>
+            <a href="about.html">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <a href="https://www.behance.net/nehirsimsekk" target="_blank" rel="noopener noreferrer">BEHANCE</a>
+        </nav>
+    </header>
+
+    <main class="case-study sap-case-study">
+
+        <!-- HERO -->
+        <section class="hero" style="min-height: unset; padding: 60px 0 20px; background: none;">
+            <div class="eyebrow">
+                Zeytin Collective · Brand Design · Budapest
+            </div>
+            <h1>Designing identity for community.</h1>
+            <p class="hero-intro">
+                Zeytin Collective is a community-driven cultural initiative in Budapest, founded by three women including myself to bring people together through shared experiences, cultural exchange, and creative events.
+            </p>
+        </section>
+
+        <!-- DETAILS -->
+        <section class="details">
+            <div class="detail">
+                <div class="detail-label">My Role</div>
+                <div class="detail-value">Co-Founder & Creative Lead</div>
+            </div>
+            <div class="detail">
+                <div class="detail-label">Deliverables</div>
+                <div class="detail-value">Typography system · Colour palette · Social media templates · Event posters · Exhibition design</div>
+            </div>
+            <div class="detail">
+                <div class="detail-label">Context</div>
+                <div class="detail-value">Community cultural initiative · Budapest · 2025–ongoing</div>
+            </div>
+        </section>
+
+        <!-- THE BRAND IDENTITY -->
+        <section class="section">
+            <div class="section-title">THE BRAND IDENTITY</div>
+            <h2>Bold type, earthy colours, a playful spirit.</h2>
+            <p class="section-intro">
+                Inspired by Mediterranean warmth and the feeling of coming together, Zeytin's visual language combines bold condensed typography with an earthy palette — designed to feel welcoming, expressive, and a little unconventional.
+            </p>
+
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="zeytin/typo.png" alt="Zeytin brand typography and colour system" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- STICKER — visual divider, centered on page -->
+        <div class="sticker-mid">
+            <img src="zeytin/Peeling Off Sticker.png" alt="Zeytin Co. sticker">
+        </div>
+
+        <!-- SOCIAL MEDIA & EVENT CONTENT -->
+        <section class="section">
+            <div class="section-title">SOCIAL MEDIA & EVENT CONTENT</div>
+            <h2>From countdown stories to event night.</h2>
+            <p class="section-intro">
+                Each event gets its own visual character while remaining unmistakably Zeytin — the brand system is flexible enough to evolve without losing coherence.
+            </p>
+
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="zeytin/Story-post.png" alt="Instagram countdown stories — 3 days until the party" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="zeytin/raki-night.png" alt="Raki Night — phone mockups and event poster designs" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- EXHIBITION -->
+        <section class="section">
+            <div class="section-title">SOMEWHERE BETWEEN — EXHIBITION</div>
+            <h2>Extending the brand into physical space.</h2>
+            <p class="section-intro">
+                Zeytin curated "Somewhere Between" at Charbon Art Café, Budapest. I developed the full visual communication — posters, artist cards, and exhibition materials — giving the show its own distinct aesthetic while keeping it recognizably Zeytin.
+            </p>
+
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="zeytin/Exhibition.png" alt="Somewhere Between — exhibition posters and artist cards" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- THE COMMUNITY -->
+        <section class="section">
+            <div class="section-title">THE COMMUNITY</div>
+            <h2 style="font-size: 2.4rem; line-height: 1.1;">More than events, it's about the people who make them.</h2>
+
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="zeytin/IMG_1368.JPG" alt="Raki night — toasting at a candlelit table" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+
+            <div class="photo-grid-3">
+                <img src="zeytin/image3.png" alt="The three co-founders of Zeytin Collective">
+                <img src="zeytin/Image 1.png" alt="People at a Zeytin event">
+                <img src="zeytin/image2.png" alt="Person writing at a Zeytin gathering">
+            </div>
+        </section>
+
+        <!-- TAKEAWAY -->
+        <section class="section">
+            <div class="section-title">THE TAKEAWAY</div>
+            <div style="font-size: 1.9rem; font-weight: 700; line-height: 1.3; max-width: 800px; margin-bottom: 32px;">
+                Branding can extend beyond visuals and become part of a <em>shared experience.</em>
+            </div>
+            <div style="max-width: 680px;">
+                <p class="section-intro">
+                    This project taught me that the visual identity is only one layer. The design signals who Zeytin is for, what kind of space it creates, and how people relate to it — before anyone walks through the door.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <button class="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">SCROLL UP ↑</button>
+
+    <nav class="project-nav">
+        <a href="story-station-project.html" class="project-nav-item nav-prev">
+            <span class="project-nav-label">← Previous</span>
+            <span class="project-nav-name">Story Station Design</span>
+        </a>
+        <a href="sap-project.html" class="project-nav-item nav-next">
+            <span class="project-nav-label">Next →</span>
+            <span class="project-nav-name">SAP Engagement Cloud Research</span>
+        </a>
+    </nav>
+
+    <footer class="site-footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2 class="footer-logo">NEHIR ŞIMŞEK</h2>
+                <a href="mailto:nehirsimsek1704@gmail.com" class="footer-email">nehirsimsek1704@gmail.com</a>
+                <p class="footer-status">Available for interaction design and UX research opportunities.</p>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/nehir-%C5%9Fim%C5%9Fek-598686228/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.behance.net/nehirsimsekk" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Behance">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22 7h-7V5h7v2zm-1.87 8.25c0-2.3-1.66-3.75-3.83-3.75-2.29 0-4.3 1.6-4.3 4.25 0 2.5 1.83 4.25 4.35 4.25 1.87 0 3.32-.97 3.86-2.5h-2.1c-.34.62-.97.95-1.74.95-1.11 0-1.99-.74-2.13-1.85h5.88c.03-.25.07-.61.07-.85zm-5.95-1c.14-.94.94-1.62 1.96-1.62.98 0 1.76.65 1.88 1.62h-3.84zM6.9 14.3h2.15c.84 0 1.45.45 1.45 1.25 0 .9-.7 1.45-1.62 1.45H6.9v-2.7zm0-4.55h2.05c.74 0 1.3.4 1.3 1.15 0 .8-.56 1.2-1.35 1.2H6.9v-2.35zM4.5 7.5v11h4.85c2.3 0 3.85-1.05 3.85-2.8 0-1.25-.7-2.15-1.7-2.55 1.1-.35 1.7-1.35 1.7-2.5 0-1.65-1.3-2.65-3.35-2.65H4.5z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <img src="eye-searching.svg" alt="Rotating Eye Animation" style="width: 300px; height: 300px;">
+            </div>
+        </div>
+    </footer>
+
+    <script src="transitions.js"></script>
+
+</body>
+</html>
