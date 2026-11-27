@@ -14,6 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
 });
 
+// When restored from bfcache (browser back/forward), reset faded-out state
+window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+        document.body.classList.remove('page-exit');
+        initScrollReveal();
+    }
+});
+
 function initScrollReveal() {
     // Stagger delays for grouped items
     const staggerGroups = [
