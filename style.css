@@ -1042,6 +1042,20 @@ body.about-page .about-section:last-child {
     transform: scale(1.28);
 }
 
+.works-scroll-thumb:has(video.video-contain) {
+    background-color: #000000;
+}
+
+.works-scroll-thumb video.video-contain {
+    transform: scale(0.82);
+    object-fit: contain;
+    background-color: #000000;
+}
+
+.works-scroll-card:hover .works-scroll-thumb video.video-contain {
+    transform: scale(1.03);
+}
+
 .works-scroll-card:hover .works-scroll-thumb img {
     transform: scale(1.03);
 }
