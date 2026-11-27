@@ -46,7 +46,7 @@
     <img src="olive.png" class="float-item float-card" data-speed="-0.04"
          style="top: 6%; right: 3%; width: 260px;" alt="Olive">
 
-    <!-- Flower PNG (Center Top — small, decorative) -->
+    <!-- Flower PNG (Center Top , small, decorative) -->
     <img src="flower.png" class="float-item" data-speed="0.05"
          style="top: -3%; left: 48%; width: 60px;" alt="Flower">
 
@@ -233,7 +233,7 @@
         });
 
         function setPos(p) {
-            // Keep pos in [repeatW, 2×repeatW) — both wrap edges land inside
+            // Keep pos in [repeatW, 2×repeatW) , both wrap edges land inside
             // the identical trailing gap between copies, so the seam is invisible
             pos = (((p - repeatW) % repeatW) + repeatW) % repeatW + repeatW;
             track.style.transform = `translateX(-${pos}px)`;

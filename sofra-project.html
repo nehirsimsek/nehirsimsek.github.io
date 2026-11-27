@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofra App Design | Nehir</title>
+
+    <link rel="icon" type="image/png" href="grid-copy.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500;700&family=Unbounded:wght@800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body[data-theme="sofra"] {
+            background-color: #00065C;
+            color: #FFFFFF;
+        }
+
+        body[data-theme="sofra"] h1,
+        body[data-theme="sofra"] h2,
+        body[data-theme="sofra"] h3 {
+            color: #FFFFFF !important;
+        }
+
+        body[data-theme="sofra"] p,
+        body[data-theme="sofra"] a,
+        body[data-theme="sofra"] span,
+        body[data-theme="sofra"] div,
+        body[data-theme="sofra"] em,
+        body[data-theme="sofra"] strong,
+        body[data-theme="sofra"] li {
+            color: #FFFFFF;
+        }
+
+        body[data-theme="sofra"] .section-title {
+            color: #FFFFFF !important;
+            border-bottom: 3px solid #FFFFFF !important;
+        }
+
+        body[data-theme="sofra"] .case-study .details {
+            border-top: 2px solid rgba(255, 255, 255, 0.4);
+            border-bottom: none;
+            row-gap: 56px !important;
+        }
+
+        body[data-theme="sofra"] .case-study .detail + .detail {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        body[data-theme="sofra"] .case-study .detail {
+            border-top: none;
+        }
+
+        body[data-theme="sofra"] .case-study .detail-label {
+            color: rgba(255, 255, 255, 0.55) !important;
+        }
+
+        body[data-theme="sofra"] .workflow-row {
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        body[data-theme="sofra"] .workflow-row:last-child {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        body[data-theme="sofra"] .navbar {
+            border-bottom: none !important;
+        }
+
+        body[data-theme="sofra"] .navbar a {
+            color: #FFFFFF !important;
+        }
+
+        body[data-theme="sofra"] .scroll-top-btn {
+            color: #FFFFFF !important;
+            border-top: 2px solid #FFFFFF !important;
+        }
+
+        body[data-theme="sofra"] .project-nav {
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        body[data-theme="sofra"] .project-nav-item {
+            color: #FFFFFF !important;
+        }
+
+        body[data-theme="sofra"] .project-nav-label,
+        body[data-theme="sofra"] .project-nav-name {
+            color: #FFFFFF !important;
+        }
+
+        body[data-theme="sofra"] .site-footer {
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        body[data-theme="sofra"] .footer-logo,
+        body[data-theme="sofra"] .footer-email,
+        body[data-theme="sofra"] .footer-status,
+        body[data-theme="sofra"] .social-icon {
+            color: #FFFFFF !important;
+        }
+
+        body[data-theme="sofra"] .screen-label {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .case-study .hero h1 {
+            text-align: left !important;
+        }
+
+        .case-study .section {
+            margin-bottom: 120px !important;
+            padding-top: 100px !important;
+        }
+
+        .screen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 2.5rem;
+        }
+
+        .screen-grid-item {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .screen-grid-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            display: block;
+        }
+
+        .screen-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .screen-caption {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .screen-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 2.5rem;
+        }
+
+        .screen-grid-4 .screen-grid-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            display: block;
+        }
+
+        .screen-section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 700px) {
+            .screen-grid { grid-template-columns: 1fr; }
+            .screen-grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* HOW IT WORKS , illustrated timeline */
+    </style>
+</head>
+
+<body data-theme="sofra">
+
+    <header class="navbar">
+        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">Nehir Şimşek</a></div>
+        <nav>
+            <a href="index.html#work">WORK</a>
+            <a href="about.html">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <a href="https://www.behance.net/nehirsimsekk" target="_blank" rel="noopener noreferrer">BEHANCE</a>
+        </nav>
+    </header>
+
+    <main class="case-study sap-case-study">
+
+        <!-- HERO -->
+        <section class="hero" style="min-height: unset; padding: 60px 0 20px; background: none;">
+            <div class="eyebrow">
+                Sofra · UX & Service Design · Sustainability & FoodTech · 2025
+            </div>
+            <h1>Designing a second life for food.</h1>
+            <p class="hero-intro">
+                <em>Sofra</em> means table in Turkish , a place where people gather, share, and have a good time. Sofra is a community-driven platform that gives surplus food a second life by connecting restaurants, volunteers, and consumers in one seamless experience.
+            </p>
+            <p class="hero-question">
+                The problem wasn't just <strong>food waste.</strong>
+                It was:
+                <br><br>
+                <em>
+                    How might we make food rescue, volunteering, and social impact part of a single, engaging everyday experience?
+                </em>
+            </p>
+
+        </section>
+
+        <!-- DETAILS -->
+        <section class="details">
+            <div class="detail">
+                <div class="detail-label">My Role</div>
+                <div class="detail-value">Designer & UX Researcher</div>
+            </div>
+            <div class="detail">
+                <div class="detail-label">Timeline</div>
+                <div class="detail-value">2 Months · 2025</div>
+            </div>
+            <div class="detail">
+                <div class="detail-label">Skills</div>
+                <div class="detail-value">User Research · UI Design · Interaction Design · Usability Testing</div>
+            </div>
+            <div class="detail">
+                <div class="detail-label">Tools</div>
+                <div class="detail-value">Figma · FigJam</div>
+            </div>
+            <div class="detail">
+                <div class="detail-label">Context</div>
+                <div class="detail-value">Concept project · Sustainability & FoodTech · 2025</div>
+            </div>
+        </section>
+
+        <!-- THE PROBLEM -->
+        <section class="section">
+            <div class="section-title">THE PROBLEM</div>
+            <h2>Food isn't wasted because nobody cares. It's wasted because there's no easy way to act.</h2>
+            <p class="section-intro">
+                A significant share of edible food goes to waste from restaurants, grocery stores, and food service providers every day. Existing solutions focus almost entirely on selling surplus food at discounted prices , which addresses consumption but ignores community.
+            </p>
+            <p class="section-intro">
+                There's a gap between food rescue efforts and community engagement. Many people are willing to contribute, but they lack a clear and accessible way to participate. Sofra is designed to close that gap.
+            </p>
+        </section>
+
+        <!-- WHO IT'S FOR -->
+        <section class="section">
+            <div class="section-title">WHO IT'S FOR</div>
+            <h2>Three different people, one shared goal.</h2>
+            <p class="section-intro">
+                Sofra brings together three distinct users whose needs are deeply connected , and whose participation makes the system work.
+            </p>
+
+            <div class="content-grid">
+                <article class="content-item">
+                    <div class="content-item-number">01</div>
+                    <h3>The volunteer</h3>
+                    <p>"I have some free time. I want to find meaningful volunteering opportunities nearby , without committing to something long-term."</p>
+                </article>
+                <article class="content-item">
+                    <div class="content-item-number">02</div>
+                    <h3>The student</h3>
+                    <p>"I want an affordable meal. I want to discover surplus food nearby so I can save money while reducing food waste."</p>
+                </article>
+                <article class="content-item">
+                    <div class="content-item-number">03</div>
+                    <h3>The restaurant</h3>
+                    <p>"When we have surplus food, we want an easy way to redistribute it , and make use of meals that would otherwise go to waste."</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="section">
+            <div class="section-title">HOW IT WORKS</div>
+            <h2>A loop where everyone benefits.</h2>
+            <p class="section-intro">
+                Instead of letting perfectly edible food go to waste, restaurants list surplus meals at reduced prices. Volunteers help distribute food to local community organizations , and earn credits in return. Those credits can be redeemed for discounted meals, or donated to support others.
+            </p>
+
+            <div class="process-map-wrapper">
+                <svg viewBox="0 0 1200 350" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+
+                    <!-- Connecting line -->
+                    <line x1="120" y1="220" x2="1080" y2="220" stroke="white" stroke-width="2" stroke-opacity="0.3"/>
+
+                    <!-- STEP 01 , Restaurants list food -->
+                    <g transform="translate(120, 220)">
+                        <image href="sofra/Restaurant-lists.png" x="-60" y="-158" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>
+                        <circle cx="0" cy="0" r="22" fill="white"/>
+                        <text x="0" y="6" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#00065C" text-anchor="middle">01</text>
+                        <text x="0" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">Restaurants list</text>
+                        <text x="0" y="66" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">surplus food</text>
+                    </g>
+
+                    <!-- STEP 02 , Volunteers discover -->
+                    <g transform="translate(360, 220)">
+                        <image href="sofra/Volunteers discover.png" x="-60" y="-158" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>
+                        <circle cx="0" cy="0" r="22" fill="white"/>
+                        <text x="0" y="6" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#00065C" text-anchor="middle">02</text>
+                        <text x="0" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">Volunteers discover</text>
+                        <text x="0" y="66" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">nearby rescues</text>
+                    </g>
+
+                    <!-- STEP 03 , Food redistributed -->
+                    <g transform="translate(600, 220)">
+                        <image href="sofra/food  redistributed.png" x="-60" y="-158" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>
+                        <circle cx="0" cy="0" r="22" fill="white"/>
+                        <text x="0" y="6" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#00065C" text-anchor="middle">03</text>
+                        <text x="0" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">Food redistributed</text>
+                        <text x="0" y="66" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">to the community</text>
+                    </g>
+
+                    <!-- STEP 04 , Earn credits -->
+                    <g transform="translate(840, 220)">
+                        <image href="sofra/earn credit.png" x="-60" y="-158" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>
+                        <circle cx="0" cy="0" r="22" fill="white"/>
+                        <text x="0" y="6" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#00065C" text-anchor="middle">04</text>
+                        <text x="0" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">Volunteers earn</text>
+                        <text x="0" y="66" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">credits</text>
+                    </g>
+
+                    <!-- STEP 05 , Credits redeemed -->
+                    <g transform="translate(1080, 220)">
+                        <image href="sofra/credits redeemed.png" x="-60" y="-158" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>
+                        <circle cx="0" cy="0" r="22" fill="white"/>
+                        <text x="0" y="6" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#00065C" text-anchor="middle">05</text>
+                        <text x="0" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">Credits redeemed</text>
+                        <text x="0" y="66" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">or donated</text>
+                    </g>
+
+                </svg>
+            </div>
+        </section>
+
+        <!-- TYPOGRAPHY -->
+        <section class="section">
+            <div class="section-title">TYPOGRAPHY</div>
+            <h2>Type as the voice of the system.</h2>
+            <p class="section-intro">
+                Before screens, there is type. Sofra's typography system was established first , defining the tone, hierarchy, and personality that would carry through every surface of the experience.
+            </p>
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="sofra/typography-sofra.png" alt="Sofra typography system" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- RESEARCH -->
+        <section class="section">
+            <div class="section-title">RESEARCH</div>
+            <h2>Starting with the right questions.</h2>
+            <p class="section-intro">
+                Before designing, I needed to understand what was actually missing. Interviews helped uncover why existing food rescue solutions weren't engaging people , and what it would take to change that.
+            </p>
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="sofra/interviews.png" alt="Research interviews" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- WIREFRAMES -->
+        <section class="section">
+            <div class="section-title">WIREFRAMES</div>
+            <h2>Mapping the experience before building it.</h2>
+            <p class="section-intro">
+                Wireframes translated research insights into structure , testing the logic of the rescue flow, the credit system, and the community features before any visual decisions were made.
+            </p>
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="sofra/wireframes.png" alt="Wireframes for Sofra app" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- ONBOARDING & VOLUNTEER GOALS -->
+        <section class="section">
+            <div class="section-title">ONBOARDING & VOLUNTEER GOALS</div>
+            <h2>First impressions that set the right expectations.</h2>
+            <p class="section-intro">
+                Onboarding does more than introduce the app , it establishes what Sofra stands for and what role the user plays in it. The goal was to make the value proposition clear before asking for any commitment.
+            </p>
+            <p class="section-intro">
+                From there, participants are invited to set their own volunteering goals , deciding how often they want to contribute, what kind of rescues they want to take on, and what they're working toward. Setting intentions early gives users a personal stake in the experience before their first rescue even begins.
+            </p>
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="sofra/onboarding.png" alt="Sofra onboarding screens" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+            <div class="hero-image-wrapper" style="margin-top: 1.5rem;">
+                <img src="sofra/goals-setting.png" alt="Goal setting screen" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- HOME & COMMUNITIES -->
+        <section class="section">
+            <div class="section-title">HOME & COMMUNITIES</div>
+            <h2>Find a cause, leave a rescue.</h2>
+            <p class="section-intro">
+                The home screen is where everything begins , nearby rescues, weekly impact, and a clear path to the communities that need them most. Once a user picks up a rescue, they can browse Sofra's partner organizations, choose a cause they care about, and drop off their rescue there. The act of giving becomes intentional, not incidental.
+            </p>
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="sofra/homescreen.png" alt="Sofra home screen" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- GOALS, BADGES & ACHIEVEMENTS -->
+        <section class="section">
+            <div class="section-title">GOALS, BADGES & ACHIEVEMENTS</div>
+            <h2>Turning commitment into something worth celebrating.</h2>
+            <p class="section-intro">
+                Every rescue completed brings users closer to their weekly goal , and every milestone earns them a badge that reflects the kind of contributor they've become. The achievement system is designed to make consistency feel rewarding, not obligatory. Progress is visible, personal, and worth coming back for.
+            </p>
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="sofra/rescue.png" alt="Sofra rescue flow screens" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- USE OR DONATE CREDITS -->
+        <section class="section">
+            <div class="section-title">USE OR DONATE CREDITS</div>
+            <h2>Your credits, your choice.</h2>
+            <p class="section-intro">
+                After completing a rescue, users earn credits they can do something meaningful with. They can browse available surplus meals and redeem their credits for a discounted meal , or choose to donate them to a community organization that needs the support. Either way, the loop closes with an act of care.
+            </p>
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="sofra/credits.png" alt="Credits and profile screens" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- BRANDING -->
+        <section class="section">
+            <div class="section-title">BRANDING</div>
+            <h2>A visual identity that feels like a table worth sitting at.</h2>
+            <p class="section-intro">
+                The brand brings the system together , rooted in warmth, community, and the idea of shared nourishment. Every visual choice reflects what it feels like to be part of something that matters.
+            </p>
+            <div class="hero-image-wrapper" style="margin-top: 2rem;">
+                <img src="sofra/branding.png" alt="Sofra brand identity" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- TAKEAWAY -->
+        <section class="section">
+            <div class="section-title">THE TAKEAWAY</div>
+            <div class="quote">Sustainable behavior doesn't need to feel like <em>sacrifice.</em></div>
+            <div class="takeaway">
+                <p>This project taught me that the barrier to sustainable action is rarely motivation , it's friction. When volunteering is nearby, low-commitment, and visibly rewarding, people participate.</p>
+                <p>Sofra explores how thoughtful UX and service design can transform an everyday decision , what to eat, how to spend an afternoon , into a small act of collective care.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <button class="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">SCROLL UP ↑</button>
+
+    <nav class="project-nav">
+        <a href="sap-project.html" class="project-nav-item nav-prev">
+            <span class="project-nav-label">← Previous</span>
+            <span class="project-nav-name">SAP Engagement Cloud Research</span>
+        </a>
+        <a href="zeytin-project.html" class="project-nav-item nav-next">
+            <span class="project-nav-label">Next →</span>
+            <span class="project-nav-name">Zeytin Collective Brand Design</span>
+        </a>
+    </nav>
+
+    <footer class="site-footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2 class="footer-logo">NEHIR ŞIMŞEK</h2>
+                <a href="mailto:nehirsimsek1704@gmail.com" class="footer-email">nehirsimsek1704@gmail.com</a>
+                <p class="footer-status">Available for interaction design and UX research opportunities.</p>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/nehir-%C5%9Fim%C5%9Fek-598686228/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.behance.net/nehirsimsekk" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Behance">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22 7h-7V5h7v2zm-1.87 8.25c0-2.3-1.66-3.75-3.83-3.75-2.29 0-4.3 1.6-4.3 4.25 0 2.5 1.83 4.25 4.35 4.25 1.87 0 3.32-.97 3.86-2.5h-2.1c-.34.62-.97.95-1.74.95-1.11 0-1.99-.74-2.13-1.85h5.88c.03-.25.07-.61.07-.85zm-5.95-1c.14-.94.94-1.62 1.96-1.62.98 0 1.76.65 1.88 1.62h-3.84zM6.9 14.3h2.15c.84 0 1.45.45 1.45 1.25 0 .9-.7 1.45-1.62 1.45H6.9v-2.7zm0-4.55h2.05c.74 0 1.3.4 1.3 1.15 0 .8-.56 1.2-1.35 1.2H6.9v-2.35zM4.5 7.5v11h4.85c2.3 0 3.85-1.05 3.85-2.8 0-1.25-.7-2.15-1.7-2.55 1.1-.35 1.7-1.35 1.7-2.5 0-1.65-1.3-2.65-3.35-2.65H4.5z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <img src="eye-searching.svg" alt="Rotating Eye Animation" style="width: 300px; height: 300px;">
+            </div>
+        </div>
+    </footer>
+
+    <script src="transitions.js"></script>
+
+</body>
+</html>
