@@ -208,8 +208,8 @@
 
         let repeatW = 0;
         let pos    = 0;
-        let speed  = 0.5;
-        let targetSpeed = 0.5;
+        let speed  = 0;
+        let targetSpeed = 0;
         let isDragging  = false;
         let startX = 0, startPos = 0, totalDrag = 0, pressTime = 0;
         let lastDragX = 0, lastDragTime = 0, dragVelocity = 0;
@@ -240,7 +240,7 @@
         }
 
         // Hover: left side scrolls backward, right side scrolls forward
-        strip.addEventListener('mouseleave', () => { targetSpeed = 0.5; });
+        strip.addEventListener('mouseleave', () => { targetSpeed = 0; });
         strip.addEventListener('mousemove', (e) => {
             if (isDragging) return;
             const r = strip.getBoundingClientRect();
